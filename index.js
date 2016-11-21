@@ -69,37 +69,7 @@ function heredoc(fn) {return fn.toString().split('\n').slice(1,-1).join('\n') + 
 
 require("http").createServer(function (request, response) {
 	response.writeHead(200, {'Content-Type': 'text/html'});
-	var path = require('url').parse(request.url).pathname;
-	var out = '';
-	if (path === '/') {
-		var out = heredoc(function(){/*
-		<!DOCTYPE html>
-		<html>
-			<head>
-				<meta charset="UTF-8">
-				<title>Timestamp microservice</title>
-				<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
-			</head>
-			<body>
-				<div class="container">
-					<h3>Example usage:</h3>
-						<code>https://timestamp123.herokuapp.com/December%2015,%202015</code><br>
-						<code>https://timestamp123.herokuapp.com/1450137600</code>
-						<h3>Example output:</h3>
-						<code>
-								{
-									"unix": 1450137600,
-									"natural": "December 15, 2015"
-								}
-						</code>
-				</div>
-			</body>
-		</html>
-		*/});
-	} else if (path !== '/favicon.ico') {
-		var param = decodeURI(path.substr(1));
-		out = output(param);
-	}
+	
 	response.end('OK');
 }).listen(process.env.PORT | 5000);
 
