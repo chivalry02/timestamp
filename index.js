@@ -100,6 +100,6 @@ require("http").createServer(function (request, response) {
 		var param = decodeURI(path.substr(1));
 		out = output(param);
 	}
-	response.end('OK');
+	response.end(out);
 }).listen(process.env.PORT || 5000);
 
